@@ -1,68 +1,101 @@
 #include "QueueClass.hpp"
 
-Queue::Queue() : head_(NULL), tail_(NULL), size_(0) {}
+// Constructor to initialize a queue
+Queue::Queue(int size)
+{
+    arr = new int[size];
+    capacity = size;
+    front = 0;
+    rear = -1;
+    count = 0;
+}
 
+// Destructor to free memory allocated to the queue
 Queue::~Queue()
 {
-    while (!empty())
-    {
-        pop();
-    }
+    delete[] arr;
 }
 
-void Queue::push(int data)
+// Utility function to dequeue the front element
+int Queue::dequeue()
 {
-    Node *new_node = new Node;
-    new_node->data = data;
-    new_node->next = NULL;
-    if (empty())
+    // check for queue underflow
+    if (isEmpty())
     {
-        head_ = new_node;
-        tail_ = new_node;
+        cout << "Underflow\nProgram Terminated\n";
+        exit(EXIT_FAILURE);
     }
-    else
-    {
-        tail_->next = new_node;
-        tail_ = new_node;
-    }
-    ++size_;
+
+    int x = arr[front];
+    cout << "Removing " << x << endl;
+
+    front = (front + 1) % capacity;
+    count--;
+
+    return x;
 }
 
-void Queue::pop()
+// Utility function to add an item to the queue
+void Queue::enqueue(int item)
 {
-    if (!empty())
+    // check for queue overflow
+    if (isFull())
     {
-        Node *temp = head_;
-        head_ = head_->next;
-        delete temp;
-        --size_;
+        cout << "Overflow\nProgram Terminated\n";
+        exit(EXIT_FAILURE);
     }
+
+    cout << "Inserting " << item << endl;
+
+    rear = (rear + 1) % capacity;
+    arr[rear] = item;
+    count++;
 }
 
-int Queue::front()
+// Utility function to return the front element of the queue
+int Queue::peek()
 {
-    if (!empty())
+    if (isEmpty())
     {
-        return head_->data;
+        cout << "Underflow\nProgram Terminated\n";
+        exit(EXIT_FAILURE);
     }
-    return int();
+    return arr[front];
 }
 
-int Queue::back()
+// Utility function to return the size of the queue
+int Queue::size()
 {
-    if (!empty())
+    return count;
+}
+
+// Utility function to check if the queue is empty or not
+bool Queue::isEmpty()
+{
+    return (size() == 0);
+}
+
+// Utility function to check if the queue is full or not
+bool Queue::isFull()
+{
+    return (size() == capacity);
+}
+
+void Queue::print()
     {
-        return tail_->data;
+        // Check if the queue is empty
+        if (isEmpty())
+        {
+            cout << "Queue is empty" << endl;
+            return;
+        }
+
+        // Print all elements in the queue
+        int index = front;
+        while (index != rear)
+        {
+            cout << arr[index] << " ";
+            index = (index + 1) % capacity;
+        }
+        cout << arr[index] << endl;
     }
-    return int();
-}
-
-bool Queue::empty() const
-{
-    return (head_ == NULL);
-}
-
-size_t Queue::size() const
-{
-    return size_;
-}
