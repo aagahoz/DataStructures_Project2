@@ -9,6 +9,7 @@
 #include "ControlClass.hpp"
 #include "RadixClass.hpp"
 #include "QueueClass.hpp"
+#include "generalFunctions.hpp"
 
 #include <iostream>
 
@@ -71,16 +72,23 @@ int main()
     arr[i] = 54; i++;
     arr[i] = 22; i++;
     arr[i] = 53; i++;
+    arr[i] = 32; i++;
 
     n = 9;
     RadixSort::sort(arr, n);
 
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 9; i++)
     {
         cout << arr[i] << " ";
     }
+    cout << endl;
+    int ortaDeger = n / 2;
+    cout << "Orta Deger : " << ortaDeger << endl;
+    cout << "Deger : " << getMiddleValueArray(arr, getMiddleValueIndex(arr, n)) << endl;
+
 
     delete[] arr;
+
 
     return 0;
 }
