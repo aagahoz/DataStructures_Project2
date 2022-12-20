@@ -3,15 +3,31 @@
 
 #include <iostream>
 using namespace std;
+
+#include "TissueClass.hpp"
+
 class TreeNode
 {
 public:
-    TreeNode(int value = 0, TreeNode *left = nullptr, TreeNode *right = nullptr);
-    TreeNode(int value, int* array);
-    int value;
+    TreeNode(TreeNode *left = nullptr, TreeNode *right = nullptr, Tissue *tissue = nullptr)
+    {
+        this->left = left;
+        this->right = right;
+        this->tissue = tissue;
+    }
+    TreeNode(Tissue *newTissue)
+    {
+        tissue = newTissue;
+        right = nullptr;
+        left = nullptr;
+    }
+    Tissue *getTissue()
+    {
+        return tissue;
+    }
     TreeNode *left;
     TreeNode *right;
-    int *array;
+    Tissue *tissue; //  array will solve
 };
 
 enum MOD
@@ -25,30 +41,103 @@ class BinarySearchTree
     TreeNode *root;
 
 public:
-    BinarySearchTree(TreeNode *root = nullptr);
-    bool isEmpty() const;
-    TreeNode *getRoot() const;
-    int height(TreeNode *node);
-    int height();
-    int depth(TreeNode *start, TreeNode *finish);
-    int depth(TreeNode *finish);
-    TreeNode *insert(TreeNode *start, int value);
-    void insert(int value);
+    BinarySearchTree(TreeNode *root = nullptr)
+    {
+        this->root = root;
+    }
+    bool isEmpty() const
+    {
+        return root == nullptr;
+    }
+    TreeNode *getRoot() const
+    {
+        return root;
+    }
+    // int height(TreeNode *node);
+    // int height();
+    // int depth(TreeNode *start, TreeNode *finish);
+    // int depth(TreeNode *finish);
+    TreeNode *insert(TreeNode *start, Tissue *newTissue)
+    {
+        if (start)
+        {
+            if (newTissue->getMiddleValue() <= start->tissue->getMiddleValue())
+            {
+                start->left = insert(start->left, newTissue);
+            }
+            else if (newTissue->getMiddleValue() > start->tissue->getMiddleValue())
+            {
+                start->right = insert(start->right, newTissue);
+            }
+        }
+        else
+        {
+            return new TreeNode(newTissue);
+        }
+        return start;
+    }
 
-    void preorder(TreeNode *start);
-    void inorder(TreeNode *start);
-    void postorder(TreeNode *start);
-    void print(MOD mod);
+    void insert(Tissue *newTissue)
+    {
+        root = insert(root, newTissue);
+    }
 
-    // find function code
-    TreeNode *find(TreeNode *start, int value);
-    TreeNode *find(int value);
+    void preorder(TreeNode *start)
+    {
+        if (start)
+        {
+            cout << start->tissue->getMiddleValue() << " ";
+            preorder(start->left);
+            preorder(start->right);
+        }
+    }
+    void inorder(TreeNode *start)
+    {
+        if (start)
+        {
+            inorder(start->left);
+            cout << start->tissue->getMiddleValue() << " ";
+            inorder(start->right);
+        }
+    }
+    void postorder(TreeNode *start)
+    {
+        if (start)
+        {
+            postorder(start->left);
+            postorder(start->right);
+            cout << start->tissue->getMiddleValue() << " ";
+        }
+    }
+    void print(MOD mod)
+    {
+        switch (mod)
+        {
+        case PRE:
+            cout << "Preorder: ";
+            preorder(root);
+            break;
+        case IN:
+            cout << "Inorder: ";
+            inorder(root);
+            break;
+        case POST:
+            cout << "Postorder: ";
+            postorder(root);
+            break;
+        }
+        if (!isEmpty())
+            cout << endl;
+    }
 
-    TreeNode *findMin(TreeNode *start);
-    TreeNode *findMin();
+    // // find function code
+    // TreeNode *find(TreeNode *start, int value);
+    // TreeNode *find(int value);
 
-    TreeNode *findMax(TreeNode *start);
-    TreeNode *findMax();
+    // TreeNode *findMin(TreeNode *start);
+    // TreeNode *findMin();
 
+    // TreeNode *findMax(TreeNode *start);
+    // TreeNode *findMax();
 };
 #endif
