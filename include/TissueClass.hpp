@@ -13,6 +13,12 @@ private:
     int index;
 
 public:
+    Tissue()
+    {
+        this->size = 0;
+        this->index = 0;
+        this->cells = nullptr;
+    }
     Tissue(int size)
     {
         this->size = size;
@@ -38,6 +44,24 @@ public:
             cout << "Cell " << i << ": " << cells[i].getDNA() << endl;
         }
     }
+    Cell* getCells()
+    {
+        return cells;
+    }
+    void setSize(int size)
+    {
+        this->size = size;
+        allocateMemory(size);
+    }
+    void allocateMemory(int size)
+    {
+        this->cells = new Cell[size];
+    }
+    int getSize()
+    {
+        return size;
+    }
+    
 };
 
 #endif

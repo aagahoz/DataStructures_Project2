@@ -1,8 +1,10 @@
 #ifndef generalFunctions_hpp
 #define generalFunctions_hpp
 
-int getMiddleValueIndex(int* array, int size);
-int getMiddleValueArray(int* array, int size);
+#include "CellClass.hpp"
+
+int getMiddleValueIndex(Cell* array, int size);
+int getMiddleValueArray(Cell* array, int size);
 
 
 #endif 
