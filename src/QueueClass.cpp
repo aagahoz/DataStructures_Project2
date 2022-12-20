@@ -27,7 +27,7 @@ int Queue::dequeue()
     }
 
     int x = arr[front];
-    cout << "Removing " << x << endl;
+//    cout << "Removing " << x << endl;
 
     front = (front + 1) % capacity;
     count--;
@@ -45,7 +45,7 @@ void Queue::enqueue(int item)
         exit(EXIT_FAILURE);
     }
 
-    cout << "Inserting " << item << endl;
+//    cout << "Inserting " << item << endl;
 
     rear = (rear + 1) % capacity;
     arr[rear] = item;

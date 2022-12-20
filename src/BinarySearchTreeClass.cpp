@@ -1,59 +1,7 @@
 #include "BinarySearchTreeClass.hpp"
 
 TreeNode::TreeNode(int value, TreeNode *left, TreeNode *right) : value(value), left(left), right(right) {}
-
-BinaryTree::BinaryTree(TreeNode *root) : root(root) {}
-
-bool BinaryTree::isEmpty() const
-{
-    return root == nullptr;
-}
-
-TreeNode *BinaryTree::getRoot() const
-{
-    return root;
-}
-
-int BinaryTree::height(TreeNode *node)
-{
-    if (node)
-    {
-        int leftHeight = height(node->left);
-        int rightHeight = height(node->right);
-        return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
-    }
-    else
-    {
-        return -1;
-    }
-}
-
-int BinaryTree::height()
-{
-    return height(root);
-}
-
-int BinaryTree::depth(TreeNode *start, TreeNode *finish)
-{
-    if (start)
-    {
-        if (start == finish)
-            return 0;
-
-        int leftDepth = depth(start->left, finish);
-        int rightDepth = depth(start->right, finish);
-        return 1 + (leftDepth > rightDepth ? leftDepth : rightDepth);
-    }
-    else
-    {
-        return INT_MIN;
-    }
-}
-
-int BinaryTree::depth(TreeNode *finish)
-{
-    return depth(root, finish);
-}
+TreeNode::TreeNode(int value, int* array) : value(value), array(array) {}
 
 BinarySearchTree::BinarySearchTree(TreeNode *root) : root(root) {}
 
@@ -108,30 +56,9 @@ int BinarySearchTree::depth(TreeNode *finish)
     return depth(root, finish);
 }
 
-TreeNode *BinarySearchTree::insert(TreeNode *start, int value)
-{
-    if (start)
-    {
-        if (value < start->value)
-        {
-            start->left = insert(start->left, value);
-        }
-        else if (value > start->value)
-        {
-            start->right = insert(start->right, value);
-        }
-    }
-    else
-    {
-        return new TreeNode(value);
-    }
-    return start;
-}
 
-void BinarySearchTree::insert(int value)
-{
-    root = insert(root, value);
-}
+
+
 
 void BinarySearchTree::preorder(TreeNode *start)
 {
@@ -263,59 +190,27 @@ TreeNode *BinarySearchTree::findMax()
     return findMax(root);
 }
 
-AVLNode::AVLNode(int value, AVLNode *left, AVLNode *right)
-: value(value), left(left), right(right) {}
-
-AVL::AVL(AVLNode *root) : root(root) {}
-
-bool AVL::isEmpty() const
+TreeNode *BinarySearchTree::insert(TreeNode *start, int value)
 {
-    return root == nullptr;
-}
-
-int AVL::height(AVLNode *node)const
-{
-    if (node)
+    if (start)
     {
-        int leftHeight = height(node->left);
-        int rightHeight = height(node->right);
-        return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
+        if (value < start->value)
+        {
+            start->left = insert(start->left, value);
+        }
+        else if (value > start->value)
+        {
+            start->right = insert(start->right, value);
+        }
     }
     else
     {
-        return 0;
+        return new TreeNode(value);
     }
+    return start;
 }
 
-int AVL::height()const
+void BinarySearchTree::insert(int value)
 {
-    return height(root);
-}
-
-int AVL::different(AVLNode *node)const
-{
-    if (node)
-    {
-        return height(node->left) - height(node->right);
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-AVLNode *AVL::ll_rotate(AVLNode *node)
-{
-    AVLNode *temp = node->left;
-    node->left = temp->right;
-    temp->right = node;
-    return temp;
-}
-
-AVLNode *AVL::rr_rotate(AVLNode *node)
-{
-    AVLNode *temp = node->right;
-    node->right = temp->left;
-    temp->left = node;
-    return temp;
+    root = insert(root, value);
 }

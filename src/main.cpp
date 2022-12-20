@@ -18,23 +18,32 @@ using namespace std;
 int main()
 {
 
-    Queue *newQueue = new Queue(10);
-    newQueue->enqueue(1);
-    newQueue->enqueue(2);
-    newQueue->enqueue(3);
-    newQueue->enqueue(4);
-    newQueue->enqueue(5);
-    newQueue->enqueue(6);
+    BinarySearchTree *bst = new BinarySearchTree();
 
-    cout << "Size: " << newQueue->size() << endl;
+    int array1[5] = {1,2,3,4,5};
+    int array2[5] = {11,12,13,14,15};
+    int array3[5] = {21,22,23,24,25};
+    int array4[5] = {31,32,33,34,35};
 
-    newQueue->print();
+    Cell cell1(21);
+    Cell cell2(33);
+    Cell cell3(46);
+    Cell cell4(51);
+    Cell cell5(21);
 
-    cout << "Peek :" << newQueue->peek() << endl;
+    Tissue *tissue1 = new Tissue(5);
 
-    newQueue->~Queue();
+    tissue1->add(cell1);
+    tissue1->add(cell2);
+    tissue1->add(cell3);
+    tissue1->add(cell4);
+    tissue1->add(cell5);
 
-    newQueue->print();
+    tissue1->print();
+
+
+
+
 
     int i = 0;
     int* arr = new int[10];
@@ -54,6 +63,7 @@ int main()
     {
         cout << arr[i] << " ";
     }
+    cout << endl;
 
     delete[] arr;
     
@@ -61,6 +71,7 @@ int main()
     {
         cout << arr[i] << " ";
     }
+    cout << endl;
 
     i = 0;
     arr = new int[10];
