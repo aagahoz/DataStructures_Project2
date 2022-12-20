@@ -17,6 +17,10 @@ using namespace std;
 
 int main()
 {
+    
+
+
+/*
     Tissue *tissue = new Tissue[10];
 
     Cell cell1(221);
@@ -277,23 +281,61 @@ int main()
     cout << "Deger : " << getMiddleValueArray(tissue[5].getCells(), getMiddleValueIndex(tissue[5].getCells(), n)) << endl;
 
     int tissueCount = 6;
-    cout << "Ortanca Degerler";
+    cout << "Ortanca Degerler:" << endl;
     for (int i = 0; i < tissueCount; i++)
     {
-        cout << " : " << getMiddleValueArray(tissue[i].getCells(), getMiddleValueIndex(tissue[i].getCells(), tissue[i].getSize())) << "    ";
+        cout << tissue[i].getMiddleValue() << endl;
     }
     cout << endl;
 
-    
     BinarySearchTree *bst = new BinarySearchTree();
     for (int i = 0; i < tissueCount; i++)
     {
-
-        getMiddleValueArray(tissue[i].getCells(), getMiddleValueIndex(tissue[i].getCells(), tissue[i].getSize()));
+        bst->insert(&tissue[i]);
     }
     cout << endl;
-    
 
+    cout << "Bos mu : " << bst->isEmpty() << endl;
+    cout << "Kok : " << bst->getRoot() << endl;
 
+    cout << "Deger : " << bst->getRoot()->getTissue()->getMiddleValue() << endl;
+    cout << "Deger : " << bst->getRoot()->right->getTissue()->getMiddleValue() << endl;
+    cout << "Deger : " << bst->getRoot()->right->left->getTissue()->getMiddleValue() << endl;
+    cout << "Deger : " << bst->getRoot()->right->right->getTissue()->getMiddleValue() << endl;
+    cout << "Deger : " << bst->getRoot()->right->right->right->getTissue()->getMiddleValue() << endl;
+    cout << "Deger : " << bst->getRoot()->right->right->left->getTissue()->getMiddleValue() << endl;
+    //        231
+    //   -        456
+    // -   -  353     2341
+    //      -    -   2261 2931
+
+    cout << "Function : " << endl;
+    bst->print(POST);
+
+    cout << "Limb: " << endl;
+    Limb *myLimb = new Limb;
+    myLimb->insertTissue(&tissue[0]); // insert t1 into the tree
+    myLimb->insertTissue(&tissue[1]); // insert t2 into the tree
+    myLimb->insertTissue(&tissue[2]); // insert t2 into the tree
+    myLimb->insertTissue(&tissue[3]); // insert t2 into the tree
+    myLimb->insertTissue(&tissue[4]); // insert t2 into the tree
+    myLimb->insertTissue(&tissue[5]); // insert t2 into the tree
+
+    myLimb->printInorder(); // print the tree in inorder traversal
+
+    cout << endl;
+    cout << "System : " << endl;
+    System *mySystem = new System();
+    mySystem->addLimb(myLimb);
+    mySystem->addLimb(myLimb);
+
+    mySystem->print();
+*/
     return 0;
 }
+
+//      231
+//    353   456
+//              2341
+//            2261  2941
+//
