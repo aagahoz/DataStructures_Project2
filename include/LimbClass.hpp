@@ -6,20 +6,16 @@
 class Limb
 {
 private:
-    BinarySearchTree bst; 
+    BinarySearchTree bst;
+
 public:
-    Limb() {} 
+    Limb();
 
-    void insertTissue(Tissue *newTissue) 
-    {
-        bst.insert(newTissue);
-    }
+    void insertTissue(Tissue *newTissue);
 
-    void printInorder() 
-    {
-        bst.print(POST);
-    }
+    void printInorder();
 
+    void printSharp();
 };
 
 #endif

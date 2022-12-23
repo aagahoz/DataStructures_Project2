@@ -7,18 +7,9 @@ class Cell
         int DNA;
     
     public:
-        Cell()
-        {
-            DNA = 0;
-        }
-        Cell(int newDNA)
-        {
-            DNA = newDNA;
-        }
-        int getDNA()
-        {
-            return DNA;
-        }
+        Cell();
+        Cell(int newDNA);
+        int getDNA();
 };
 
 #endif
