@@ -2,6 +2,7 @@
 #define LimbClass_hpp
 
 #include "BinarySearchTreeClass.hpp"
+#include "TissueClass.hpp"
 
 class Limb
 {
@@ -16,6 +17,23 @@ public:
     void printInorder();
 
     void printSharp();
+
+    void makeBalanceBST()
+    {
+        // cout << "Basarili" << endl;
+        bst.isBalanced();
+    }
+    void printBalanced()
+    {
+        if (bst.getRoot()->balance)
+        {
+            cout << " ";
+        }
+        else
+        {
+            cout << "#";
+        }
+    }
 };
 
 #endif

@@ -15,6 +15,8 @@ public:
     TreeNode *left;
     TreeNode *right;
     Tissue *tissue; //  array will solve
+    bool balance;
+
 };
 
 enum MOD
@@ -42,5 +44,8 @@ public:
     void inorder(TreeNode *start);
     void postorder(TreeNode *start);
     void print(MOD mod);
+    void isBalanced(TreeNode* node);
+    void isBalanced();
+
 };
 #endif

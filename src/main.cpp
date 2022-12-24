@@ -45,7 +45,6 @@ int main()
     System *systems = new System[countOfSystem];
     Organism *organism = new Organism(countOfSystem);
 
-
     int indexTissue = 0;
     int indexLimbs = 0;
     int indexSystems = 0;
@@ -109,11 +108,15 @@ int main()
 
     for (int i = 0; i < countOfSystem; i++)
     {
-        organism->addSystemToOrganism(systems[i]);   
+        organism->addSystemToOrganism(systems[i]);
     }
     cout << "Veriler Organismaya Sinifina Basari ile eklendi !!!" << endl;
 
- //   organism->printSystems();
+    // organism->printSystems();
+    cout << endl;
+    cout << endl;
+    organism->makeBalanceCheck();
+    organism->printBalanced();
 
     return 0;
 }

@@ -26,6 +26,10 @@ public:
     System* getSystems();
 
     void printSystems();
+
+    void makeBalanceCheck();
+    void printBalanced();
+
 };
 
 #endif

@@ -50,3 +50,19 @@ void Organism::printSystems()
         systems[i].print();
     }
 }
+
+void Organism::makeBalanceCheck()
+{
+    for (int i = 0; i < this->size; i++)
+    {
+        systems[i].makeBalanceLimbs();
+    }
+}
+
+void Organism::printBalanced()
+{
+    for (int i = 0; i < this->size; i++)
+    {
+        systems[i].printBalancedLimbs();
+    }
+}

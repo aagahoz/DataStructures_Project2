@@ -5,12 +5,14 @@ TreeNode::TreeNode(TreeNode *left, TreeNode *right, Tissue *tissue)
     this->left = left;
     this->right = right;
     this->tissue = tissue;
+    this->balance = true;
 }
 TreeNode::TreeNode(Tissue *newTissue)
 {
     tissue = newTissue;
     right = nullptr;
     left = nullptr;
+    this->balance = true;
 }
 Tissue *TreeNode::getTissue()
 {
@@ -19,7 +21,6 @@ Tissue *TreeNode::getTissue()
 
 BinarySearchTree::BinarySearchTree()
 {
-    
 }
 
 BinarySearchTree::BinarySearchTree(TreeNode *root)
@@ -80,9 +81,7 @@ void BinarySearchTree::preorder(TreeNode *start)
 {
     if (start)
     {
-
         cout << start->tissue->getMiddleValue() << " ";
-
         preorder(start->left);
         preorder(start->right);
     }
@@ -124,4 +123,22 @@ void BinarySearchTree::print(MOD mod)
     }
     if (!isEmpty())
         cout << endl;
+}
+
+void BinarySearchTree::isBalanced(TreeNode *node)
+{
+    if(node)
+    {
+        if(!(abs(height(node->left) - height(node->right)) < 2))
+        {
+            node->balance = false;
+        }
+        isBalanced(node->left);
+        isBalanced(node->right);
+    }
+}
+
+void BinarySearchTree::isBalanced()
+{
+    isBalanced(root);
 }

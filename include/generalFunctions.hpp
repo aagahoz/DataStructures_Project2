@@ -6,5 +6,4 @@
 int getMiddleValueIndex(Cell* array, int size);
 int getMiddleValueArray(Cell* array, int size);
 
-
 #endif 

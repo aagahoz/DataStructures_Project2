@@ -9,6 +9,8 @@
         "ostream": "cpp",
         "ios": "cpp",
         "new": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "__locale": "cpp",
+        "locale": "cpp"
     }
 }
