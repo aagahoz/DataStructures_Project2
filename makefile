@@ -10,8 +10,9 @@ compile:
 	g++ -I ./include/ -o ./lib/ControlClass.o -c ./src/ControlClass.cpp
 	g++ -I ./include/ -o ./lib/RadixClass.o -c ./src/RadixClass.cpp
 	g++ -I ./include/ -o ./lib/QueueClass.o -c ./src/QueueClass.cpp
+	g++ -I ./include/ -o ./lib/TestClass.o -c ./src/TestClass.cpp
 	g++ -I ./include/ -o ./lib/generalFunctions.o -c ./src/generalFunctions.cpp
 
-	g++ -I ./include/ -o ./bin/main ./lib/BinarySearchTreeClass.o ./lib/CellClass.o ./lib/TissueClass.o ./lib/LimbClass.o ./lib/SystemClass.o ./lib/OrganismClass.o ./lib/ControlClass.o ./lib/RadixClass.o ./lib/QueueClass.o ./lib/generalFunctions.o ./src/main.cpp
+	g++ -I ./include/ -o ./bin/main ./lib/BinarySearchTreeClass.o ./lib/CellClass.o ./lib/TissueClass.o ./lib/LimbClass.o ./lib/SystemClass.o ./lib/OrganismClass.o ./lib/ControlClass.o ./lib/RadixClass.o ./lib/QueueClass.o ./lib/TestClass.o ./lib/generalFunctions.o ./src/main.cpp
 run:
 	./bin/main

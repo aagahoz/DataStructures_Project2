@@ -13,19 +13,18 @@
 #include "QueueClass.hpp"
 #include "generalFunctions.hpp"
 
-#include <iostream>
-
 using namespace std;
 
 int main()
 {
+    string dosyaIsmi = "veriler.txt";
 
     const int countOfTissueForLimb = 20;
     const int countOfLimbForSystem = 100;
     const int countOfTissueForSystem = countOfTissueForLimb * countOfLimbForSystem;
 
     ifstream verilerFile;
-    verilerFile.open("veriler.txt");
+    verilerFile.open(dosyaIsmi);
     string line;
     int countOfTissue = 0;
     bool isFileOpen = false;
@@ -38,33 +37,25 @@ int main()
 
     if (isFileOpen)
     {
-
-        // cout << "Count of Tissue : " << countOfTissue << endl;
         const int countOfSystem = countOfTissue / countOfTissueForSystem;
-        // cout << "Count of System : " << countOfSystem << endl;
         const int countOfLimb = countOfTissue / countOfTissueForLimb;
-        // cout << "Count of Limb : " << countOfLimb << endl;
 
         Tissue *tissues = new Tissue[countOfTissue];
         Limb *limbs = new Limb[countOfLimb];
         System *systems = new System[countOfSystem];
         Organism *organism = new Organism(countOfSystem);
-        // cout << "Flag 1" << endl;
         int indexTissue = 0;
         int indexLimbs = 0;
         int indexSystems = 0;
 
-        verilerFile.open("veriler.txt");
-        // cout << "Flag 1.011" << endl;
+        verilerFile.open(dosyaIsmi);
 
         while (getline(verilerFile, line))
         {
-            // cout << "Flag 1.1" << endl;
 
             stringstream s(line);
             stringstream finderCountOfCells(line);
             string numberChar;
-            // cout << "Flag 2" << endl;
             int sizeTissue = 0;
             while (finderCountOfCells >> numberChar)
             {
@@ -75,17 +66,12 @@ int main()
 
             while (s >> numberChar)
             {
-                // cout << "Flag 3" << endl;
                 int number = stoi(numberChar);
-                // cout << "Flag 4" << endl;
                 Cell *tempCell = new Cell(number);
                 tissues[indexTissue].add(*tempCell);
-                // cout << "Flag 5" << endl;
             }
 
-            // cout << "Flag 6" << endl;
             RadixSort::sort(tissues[indexTissue].getCells(), tissues[indexTissue].getSize());
-            // cout << "Flag 7" << endl;
 
             indexTissue++;
         }
@@ -103,9 +89,6 @@ int main()
             }
         }
 
-        // cout << "Veriler Organa Basari ile eklendi !!!" << endl;
-        // cout << "Sira sisteme eklemede !!!" << endl;
-
         for (int i = 0; i < countOfSystem; i++)
         {
             for (int j = 0; j < countOfLimbForSystem; j++)
@@ -118,19 +101,19 @@ int main()
             }
         }
 
-        // cout << "Veriler Sistem Sinifina Basari ile eklendi !!!" << endl;
-
         for (int i = 0; i < countOfSystem; i++)
         {
             organism->addSystemToOrganism(systems[i]);
         }
-        // cout << "Veriler Organismaya Sinifina Basari ile eklendi !!!" << endl;
-
-        // organism->printSystems();
         cout << endl;
         cout << endl;
         organism->makeBalanceCheck();
         organism->printBalanced();
+
+        delete[] tissues;
+        delete[] limbs;
+        delete[] systems;
+        delete organism;
 
         cout << endl;
         cout << endl;
@@ -139,6 +122,16 @@ int main()
     {
         cout << "Dosya Okuma Sorunu" << endl;
     }
+
+    // ! test sınıfı ekle
+    // ! test sınıfı ekle
+    // ! test sınıfı ekle
+    // ! test sınıfı ekle
+    // ! test sınıfı ekle
+    // ! test sınıfı ekle
+    // ! test sınıfı ekle
+    // ! test sınıfı ekle
+    // ! test sınıfı ekle
 
     return 0;
 }
